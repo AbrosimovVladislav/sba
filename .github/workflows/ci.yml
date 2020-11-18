@@ -25,7 +25,7 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.PRIVATE_KEY }}
           port: 22
-          strip_components: 1
+          strip_components: 2
           source: "build/libs/*.jar"
           target: "/opt/prod"
       - name: Start App
