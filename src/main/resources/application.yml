@@ -10,5 +10,4 @@ dump:
     db: matchingservice
     username: postgres
     password: root
-    linuxFilePath: /opt/prod/
-    windowsFilePath: ${user.home}\
+    filePath: /opt/prod/

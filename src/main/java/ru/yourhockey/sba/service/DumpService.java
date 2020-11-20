@@ -21,24 +21,19 @@ public class DumpService {
 
     public void dumpMatcherOffers() {
         log.info("Start dump of MatcherOffers");
-        String cmd = new StringJoiner(" ")
-                .add("pg_dump")
-                .add("--dbname=" + matcherOfferConfig.getDb())
-                .add("--schema=public")
-                .add("--table=public.\\\"matcher_offer\\\"")
-                .add("--file=" +
-                        (System.getProperty("os.name").contains("Linux") ? matcherOfferConfig.getLinuxFilePath() : matcherOfferConfig.getWindowsFilePath())
-                        + "matcher-offers-dump-" + Instant.now() + ".sql")
-                .add("--username=" + matcherOfferConfig.getUsername())
-                .add("--host=localhost")
-                .add("--port=5432")
-                .toString();
-        log.info("Command for MatcherOffers dump: {}", cmd);
-
         try {
-            ProcessBuilder processBuilder = new ProcessBuilder();
+            ProcessBuilder processBuilder = new ProcessBuilder(
+                    "pg_dump",
+                    "--dbname=" + matcherOfferConfig.getDb(),
+                    "--schema=public",
+                    "--table=public.\"matcher_offer\"",
+                    "--file=" + matcherOfferConfig.getFilePath() + "matcher-offers-dump-" + Instant.now() + ".sql",
+                    "--username=" + matcherOfferConfig.getUsername(),
+                    "--host=localhost",
+                    "--port=5432"
+            );
             processBuilder.environment().put("PGPASSWORD", matcherOfferConfig.getPassword());
-            Process start = processBuilder.command(cmd).start();
+            Process start = processBuilder.start();
             start.waitFor();
 
             InputStream errorStream = start.getErrorStream();
@@ -51,7 +46,7 @@ public class DumpService {
             errorStream.close();
 
         } catch (IOException | InterruptedException e) {
-            log.error("Command {} can't be processed", cmd);
+            log.error("Command  can't be processed");
             e.printStackTrace();
         }
     }
