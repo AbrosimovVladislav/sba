@@ -3,21 +3,21 @@ package ru.yourhockey.sba.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.util.StringUtils;
 import ru.yourhockey.sba.config.MatcherOfferConfig;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Comparator;
 
 @Slf4j
 @Service
-@RequiredArgsConstructor
-public class RefreshService {
+public class RefreshService extends CmdRunner {
 
-    private final MatcherOfferConfig matcherOfferConfig;
+    private static final String MATCHER_OFFER_REFRESH = "MATCHER_OFFER_REFRESH";
+
+    public RefreshService(MatcherOfferConfig matcherOfferConfig) {
+        super(matcherOfferConfig);
+    }
 
     public void refreshMatcherOffers() {
         log.info("Start refreshMatcherOffers()");
@@ -43,23 +43,8 @@ public class RefreshService {
                 "matchingservice",
                 "-f " + file.getAbsolutePath()
         );
-
         processBuilder.environment().put("PGPASSWORD", matcherOfferConfig.getPassword());
-        Process start = null;
-        try {
-            start = processBuilder.start();
-            start.waitFor();
-
-            InputStream errorStream = start.getErrorStream();
-            String error = new String(errorStream.readAllBytes());
-            if (!StringUtils.isEmpty(error)) {
-                throw new IOException(error);
-            }
-            log.info("Successful executing of command");
-        } catch (IOException | InterruptedException e) {
-            log.error("Failing executing of command");
-            log.error(e.getMessage());
-        }
+        runProcess(processBuilder, MATCHER_OFFER_REFRESH);
     }
 
 }
