@@ -29,13 +29,21 @@ public class RefreshService {
         File file = files[0];
 
         log.info("Start of cmd processing");
+//        ProcessBuilder processBuilder = new ProcessBuilder(
+//                "sudo",
+//                "-u " + matcherOfferConfig.getUsername(),
+//                "psql",
+//                "matchingservice",
+//                "-f " + file.getAbsolutePath()
+//        );
+
         ProcessBuilder processBuilder = new ProcessBuilder(
-                "sudo",
-                "-u " + matcherOfferConfig.getUsername(),
                 "psql",
+                "-U " + matcherOfferConfig.getUsername(),
                 "matchingservice",
                 "-f " + file.getAbsolutePath()
         );
+
         processBuilder.environment().put("PGPASSWORD", matcherOfferConfig.getPassword());
         Process start = null;
         try {
