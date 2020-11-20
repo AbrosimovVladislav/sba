@@ -6,3 +6,4 @@ dump:
     db: matchingservice
     username: postgres
     password: root
+    filePath: /opt/prod/

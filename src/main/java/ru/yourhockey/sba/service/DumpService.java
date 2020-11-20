@@ -8,15 +8,13 @@ import ru.yourhockey.sba.config.MatcherOfferConfig;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Date;
+import java.time.Instant;
 import java.util.StringJoiner;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class DumpService {
-
-    private static final String filePath = "./src/main/resources/dump/";
 
     private final MatcherOfferConfig matcherOfferConfig;
 
@@ -29,7 +27,7 @@ public class DumpService {
                 .add("--dbname=" + matcherOfferConfig.getDb())
                 .add("--schema=public")
                 .add("--table=public.\\\"matcher_offer\\\"")
-                .add("--file=" + filePath + "matcher-offers-dump-" + new Date().toInstant() + ".sql")
+                .add("--file=" + matcherOfferConfig.getFilePath() + "matcher-offers-dump-" + Instant.now() + ".sql")
                 .add("--username=" + matcherOfferConfig.getUsername())
                 .add("--host=localhost")
                 .add("--port=5432")
