@@ -1,2 +1,8 @@
 server:
   port: 8085
+
+dump:
+  matcher-offers:
+    db: matchingservice
+    username: postgres
+    password: root
