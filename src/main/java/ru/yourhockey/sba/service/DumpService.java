@@ -18,7 +18,6 @@ public class DumpService {
 
     private final MatcherOfferConfig matcherOfferConfig;
 
-
     public void dumpMatcherOffers() {
         log.info("Start dump of MatcherOffers");
         try {
