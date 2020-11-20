@@ -11,5 +11,6 @@ public class MatcherOfferConfig {
     String db;
     String username;
     String password;
-    String filePath;
+    String linuxFilePath;
+    String windowsFilePath;
 }

@@ -22,12 +22,13 @@ public class DumpService {
     public void dumpMatcherOffers() {
         log.info("Start dump of MatcherOffers");
         String cmd = new StringJoiner(" ")
-                .add("PGPASSWORD=" + "\"" + matcherOfferConfig.getPassword() + "\"")
                 .add("pg_dump")
                 .add("--dbname=" + matcherOfferConfig.getDb())
                 .add("--schema=public")
                 .add("--table=public.\\\"matcher_offer\\\"")
-                .add("--file=" + matcherOfferConfig.getFilePath() + "matcher-offers-dump-" + Instant.now() + ".sql")
+                .add("--file=" +
+                        (System.getProperty("os.name").contains("Linux") ? matcherOfferConfig.getLinuxFilePath() : matcherOfferConfig.getWindowsFilePath())
+                        + "matcher-offers-dump-" + Instant.now() + ".sql")
                 .add("--username=" + matcherOfferConfig.getUsername())
                 .add("--host=localhost")
                 .add("--port=5432")
@@ -35,10 +36,12 @@ public class DumpService {
         log.info("Command for MatcherOffers dump: {}", cmd);
 
         try {
-            Process p = Runtime.getRuntime().exec(cmd);
-            p.waitFor();
+            ProcessBuilder processBuilder = new ProcessBuilder();
+            processBuilder.environment().put("PGPASSWORD", matcherOfferConfig.getPassword());
+            Process start = processBuilder.command(cmd).start();
+            start.waitFor();
 
-            InputStream errorStream = p.getErrorStream();
+            InputStream errorStream = start.getErrorStream();
             String error = new String(errorStream.readAllBytes());
             if (StringUtils.isEmpty(error)) {
                 log.info("");
