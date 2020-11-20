@@ -10,4 +10,4 @@ dump:
     db: matchingservice
     username: postgres
     password: root
-    filePath: /opt/prod/
+    filePath: /opt/prod/dump/
