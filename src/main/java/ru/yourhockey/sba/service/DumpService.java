@@ -17,7 +17,6 @@ public class DumpService extends CmdRunner {
     }
 
     public void dumpMatcherOffers() {
-        log.info("Start dump of MatcherOffers");
         ProcessBuilder processBuilder = new ProcessBuilder(
                 "pg_dump",
                 "--dbname=" + matcherOfferConfig.getDb(),

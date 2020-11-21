@@ -20,7 +20,6 @@ public class RefreshService extends CmdRunner {
     }
 
     public void refreshMatcherOffers() {
-        log.info("Start refreshMatcherOffers()");
         File directory = new File(matcherOfferConfig.getFilePath());
         log.info("Get directory: {}", directory);
         File[] files = directory.listFiles();
@@ -28,7 +27,6 @@ public class RefreshService extends CmdRunner {
         Arrays.sort(files, Comparator.comparingLong(File::lastModified));
         File file = files[0];
 
-        log.info("Start of cmd processing");
 //        ProcessBuilder processBuilder = new ProcessBuilder(
 //                "sudo",
 //                "-u " + matcherOfferConfig.getUsername(),

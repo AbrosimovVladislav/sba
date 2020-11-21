@@ -15,9 +15,9 @@ public abstract class CmdRunner {
     protected final MatcherOfferConfig matcherOfferConfig;
 
     protected void runProcess(ProcessBuilder processBuilder, String cmdName) {
-        Process start = null;
+        Process start;
         try {
-            log.info("Start processing: {}", cmdName);
+            log.info("Start process: {}", cmdName);
             start = processBuilder.start();
             start.waitFor();
 
