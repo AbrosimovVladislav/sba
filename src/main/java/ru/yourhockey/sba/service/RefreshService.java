@@ -1,6 +1,5 @@
 package ru.yourhockey.sba.service;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.yourhockey.sba.config.MatcherOfferConfig;
@@ -36,11 +35,12 @@ public class RefreshService extends CmdRunner {
 //        );
 
         ProcessBuilder processBuilder = new ProcessBuilder(
-                "psql",
-                "-U " + matcherOfferConfig.getUsername(),
-                "matchingservice",
-                "-f " + file.getAbsolutePath()
-        );
+                "/bin/bash",
+                "-c",
+                "sudo -u " + matcherOfferConfig.getUsername() + " psql  matchingservice -f " + file.getAbsolutePath());
+
+        //new ProcessBuilder("/bin/bash", "-c", "sudo -u postgres psql  matchingservice -f " + file.getAbsolutePath());
+
         processBuilder.environment().put("PGPASSWORD", matcherOfferConfig.getPassword());
         runProcess(processBuilder, MATCHER_OFFER_REFRESH);
     }
