@@ -26,20 +26,10 @@ public class RefreshService extends CmdRunner {
         Arrays.sort(files, Comparator.comparingLong(File::lastModified));
         File file = files[0];
 
-//        ProcessBuilder processBuilder = new ProcessBuilder(
-//                "sudo",
-//                "-u " + matcherOfferConfig.getUsername(),
-//                "psql",
-//                "matchingservice",
-//                "-f " + file.getAbsolutePath()
-//        );
-
         ProcessBuilder processBuilder = new ProcessBuilder(
                 "/bin/bash",
                 "-c",
                 "sudo -u " + matcherOfferConfig.getUsername() + " psql  matchingservice -f " + file.getAbsolutePath());
-
-        //new ProcessBuilder("/bin/bash", "-c", "sudo -u postgres psql  matchingservice -f " + file.getAbsolutePath());
 
         processBuilder.environment().put("PGPASSWORD", matcherOfferConfig.getPassword());
         runProcess(processBuilder, MATCHER_OFFER_REFRESH);
