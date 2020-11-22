@@ -20,7 +20,7 @@ public abstract class DumpService extends CmdRunner {
                 "pg_dump",
                 "--dbname=" + db,
                 "--schema=public",
-                "--file=" + filePath + "matcher-offers-dump-" + Instant.now() + ".sql",
+                "--file=" + filePath + processName + Instant.now() + ".sql",
                 "--username=" + dumpConfig.getDbUserName(),
                 "--host=" + dumpConfig.getHost(),
                 "--port=" + dumpConfig.getPort()
