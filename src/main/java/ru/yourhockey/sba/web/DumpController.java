@@ -15,8 +15,8 @@ public class DumpController {
 
     private final List<DumpService> dumpServices;
 
-    @GetMapping("/dump")
-    public void dumpMatcherOffers() {
+    @GetMapping("/testDump")
+    public void testDump() {
         dumpServices.forEach(DumpService::runDump);
     }
 
