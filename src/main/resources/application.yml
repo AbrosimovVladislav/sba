@@ -14,10 +14,10 @@ dump:
   aggregatorDb: yourhockey
   scrapperDb: scrappingservice
   ttDb: troubleticketservice
-  matcherDumpFilePath: /opt/prod/dump/matcher
-  aggregatorDumpFilePath: /opt/prod/dump/aggregator
-  scrapperDumpFilePath: /opt/prod/dump/scrapper
-  ttDumpFilePath: /opt/prod/dump/tt
+  matcherDumpFilePath: /opt/prod/dump/matcher/
+  aggregatorDumpFilePath: /opt/prod/dump/aggregator/
+  scrapperDumpFilePath: /opt/prod/dump/scrapper/
+  ttDumpFilePath: /opt/prod/dump/tt/
   host: localhost
   port: 5432
   dbUserName: postgres
