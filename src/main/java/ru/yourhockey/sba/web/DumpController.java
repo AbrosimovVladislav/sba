@@ -9,13 +9,13 @@ import ru.yourhockey.sba.service.dump.DumpService;
 import java.util.List;
 
 @RequiredArgsConstructor
-@RequestMapping("/dump")
+@RequestMapping
 @RestController
 public class DumpController {
 
     private final List<DumpService> dumpServices;
 
-    @GetMapping("/")
+    @GetMapping("/dump")
     public void dumpMatcherOffers() {
         dumpServices.forEach(DumpService::runDump);
     }
