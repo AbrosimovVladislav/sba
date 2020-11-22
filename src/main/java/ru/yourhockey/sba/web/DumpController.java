@@ -4,18 +4,20 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.yourhockey.sba.service.DumpService;
+import ru.yourhockey.sba.service.dump.DumpService;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RequestMapping("/dump")
 @RestController
 public class DumpController {
 
-    private final DumpService dumpService;
+    private final List<DumpService> dumpServices;
 
     @GetMapping("/matcherOffer")
-    public void dumpMatcherOffers(){
-        dumpService.dumpMatcherOffers();
+    public void dumpMatcherOffers() {
+        dumpServices.forEach(DumpService::runDump);
     }
 
 }

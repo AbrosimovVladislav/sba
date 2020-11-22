@@ -6,8 +6,19 @@ logging:
     name: admin-service.log
 
 dump:
-  matcher-offers:
-    db: matchingservice
-    username: postgres
-    password: root
-    filePath: /opt/prod/dump/
+  matcherProcessName: MATCHER_DUMP
+  aggregatorProcessName: AGGREGATOR_DUMP
+  scrapperProcessName: SCRAPPER_DUMP
+  ttProcessName: TT_DUMP
+  matcherDb: matchingservice
+  aggregatorDb: yourhockey
+  scrapperDb: scrappingservice
+  ttDb: troubleticketservice
+  matcherDumpFilePath: /opt/prod/dump/matcher
+  aggregatorDumpFilePath: /opt/prod/dump/aggregator
+  scrapperDumpFilePath: /opt/prod/dump/scrapper
+  ttDumpFilePath: /opt/prod/dump/tt
+  host: localhost
+  port: 5432
+  dbUserName: postgres
+  dbPassword: root

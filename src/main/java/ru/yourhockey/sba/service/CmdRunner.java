@@ -3,7 +3,7 @@ package ru.yourhockey.sba.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.thymeleaf.util.StringUtils;
-import ru.yourhockey.sba.config.MatcherOfferConfig;
+import ru.yourhockey.sba.config.DumpConfig;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,7 +12,7 @@ import java.io.InputStream;
 @RequiredArgsConstructor
 public abstract class CmdRunner {
 
-    protected final MatcherOfferConfig matcherOfferConfig;
+    protected final DumpConfig dumpConfig;
 
     protected void runProcess(ProcessBuilder processBuilder, String cmdName) {
         Process start;
