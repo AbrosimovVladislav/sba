@@ -1,4 +1,4 @@
-package ru.yourhockey.sba.service;
+package ru.yourhockey.sba.service.scheduler;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
