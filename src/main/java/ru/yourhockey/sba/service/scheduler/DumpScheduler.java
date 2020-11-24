@@ -13,7 +13,7 @@ public class DumpScheduler {
 
     private final List<DumpService> dumpServices;
 
-    @Scheduled(cron = "0 0 */24 * * *")
+    @Scheduled(cron = "0 0 */12 * * *")
     public void dump() {
         dumpServices.forEach(DumpService::runDump);
     }
