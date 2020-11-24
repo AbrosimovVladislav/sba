@@ -15,16 +15,19 @@ public class DumpConfig {
     String aggregatorProcessName;
     String scrapperProcessName;
     String ttProcessName;
+    String trustInfoProcessName;
 
     String matcherDb;
     String aggregatorDb;
     String scrapperDb;
     String ttDb;
+    String trustInfoDb;
 
     String matcherDumpFilePath;
     String aggregatorDumpFilePath;
     String scrapperDumpFilePath;
     String ttDumpFilePath;
+    String trustInfoDumpFilePath;
 
     String host;
     String port;

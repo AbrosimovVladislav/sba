@@ -10,14 +10,17 @@ dump:
   aggregatorProcessName: AGGREGATOR_DUMP
   scrapperProcessName: SCRAPPER_DUMP
   ttProcessName: TT_DUMP
+  trustInfoProcessName: TRUST_INFO_DUMP
   matcherDb: matchingservice
   aggregatorDb: yourhockey
   scrapperDb: scrappingservice
   ttDb: troubleticketservice
+  trustInfoDb: trustinfo
   matcherDumpFilePath: /opt/prod/dump/matcher/
   aggregatorDumpFilePath: /opt/prod/dump/aggregator/
   scrapperDumpFilePath: /opt/prod/dump/scrapper/
   ttDumpFilePath: /opt/prod/dump/tt/
+  trustInfoDumpFilePath: /opt/prod/dump/trustinfo/
   host: localhost
   port: 5432
   dbUserName: postgres
